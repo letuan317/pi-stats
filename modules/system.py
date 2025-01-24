@@ -19,19 +19,31 @@ def get_ram_usage():
     return round(ram_percentage, 2)
 
 
-def get_temperature():
+def get_temperature(verbose=False):
     temp = 0
     try:
         if os.path.exists('/sys/class/thermal/thermal_zone0/temp'):
+            if verbose:
+                print('Using /sys/class/thermal/thermal_zone0/temp')
             with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
                 temp = int(f.read()) / 1000.0
         else:
+            if verbose:
+                print('Using sensors command')
             result = subprocess.run(
                 ['sensors'], stdout=subprocess.PIPE, text=True)
+
+            if verbose:
+                print(result.stdout)
+
             for line in result.stdout.split('\n'):
+                if verbose:
+                    print(line)
                 if 'temp1' in line:
                     temp = float(line.split()[2].replace('°C', ''))
+
                     break
-    except (FileNotFoundError, ValueError, subprocess.CalledProcessError):
+    except Exception as e:
+        print("Error getting temperature:", e)
         temp = 0
     return temp
