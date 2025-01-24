@@ -1,3 +1,5 @@
 from modules import system
 
-system.get_temperature(verbose=True)
+temp = system.get_temperature(verbose=True)
+
+print("Temperature:", temp)
