@@ -1,7 +1,7 @@
 # pi-stats
 
 ```bash
-sudo apt install python3-pip python3-flask python3-psutil
+sudo apt install python3-pip python3-flask python3-psutil python3-termcolor
 chmod +x stats.py
 
 crontab -e

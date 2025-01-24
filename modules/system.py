@@ -40,7 +40,7 @@ def get_temperature(verbose=False):
                 if verbose:
                     print(line)
                 if 'temp1' in line:
-                    temp = float(line.split()[2].replace('°C', ''))
+                    temp = float(line.split()[1].replace('°C', ''))
 
                     break
     except Exception as e:
