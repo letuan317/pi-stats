@@ -28,7 +28,7 @@ def get_temperature():
             result = subprocess.run(
                 ['sensors'], stdout=subprocess.PIPE, text=True)
             for line in result.stdout.split('\n'):
-                if 'Core 0' in line:
+                if 'temp1' in line:
                     temp = float(line.split()[2].replace('°C', ''))
                     break
             else:

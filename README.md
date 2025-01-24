@@ -6,7 +6,7 @@ chmod +x stats.py
 
 crontab -e
 
-@reboot /usr/bin/python3 /home/tuan/stats.py
+@reboot /usr/bin/python3 /home/tuan/github/pi-stats/app.py
 
 sudo reboot
 ```
