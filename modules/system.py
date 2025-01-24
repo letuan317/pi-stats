@@ -20,6 +20,7 @@ def get_ram_usage():
 
 
 def get_temperature():
+    temp = 0
     try:
         if os.path.exists('/sys/class/thermal/thermal_zone0/temp'):
             with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
@@ -31,8 +32,6 @@ def get_temperature():
                 if 'temp1' in line:
                     temp = float(line.split()[2].replace('°C', ''))
                     break
-            else:
-                temp = 0
     except (FileNotFoundError, ValueError, subprocess.CalledProcessError):
         temp = 0
     return temp
